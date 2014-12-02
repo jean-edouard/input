@@ -193,7 +193,7 @@ static int __exit hid_unbind(struct usb_composite_dev *cdev)
 
 static int __init hidg_plat_driver_probe(struct platform_device *pdev)
 {
-	struct hidg_func_descriptor *func = pdev->dev.platform_data;
+	struct hidg_func_descriptor *func = dev_get_platdata(&pdev->dev);
 	struct hidg_func_node *entry;
 
 	if (!func) {
@@ -407,6 +407,11 @@ static int create_new_hidg(void)
 static int __init hidg_init(void)
 {
 	int status;
+
+	status = create_new_hidg();
+
+	if ( status < 0)
+		return status;
 
 	status = platform_driver_probe(&hidg_plat_driver,
 				hidg_plat_driver_probe);
