@@ -297,56 +297,59 @@ MODULE_LICENSE("GPL");
     0xc0,                       /*   END_COLLECTION                 */	\
     0xc0                        /* END_COLLECTION                   */
 
+#define DIGITIZER							\
+    0x05, 0x0D,         /*  Usage Page (Digitizer),             */	\
+    0x09, 0x04,         /*  Usage (Touchscreen),                */	\
+    0xA1, 0x01,         /*  Collection (Application),           */	\
+    0x85, REPORT_ID_MULTITOUCH, /* Report ID (4),               */	\
+    0x09, 0x22,         /*      Usage (Finger),                 */	\
+    0xA1, 0x00,         /*      Collection (Physical),          */	\
+    0x09, 0x42,         /*          Usage (Tip Switch),         */	\
+    0x15, 0x00,         /*          Logical Minimum (0),        */	\
+    0x25, 0x01,         /*          Logical Maximum (1),        */	\
+    0x75, 0x01,         /*          Report Size (1),            */	\
+    0x95, 0x01,         /*          Report Count (1),           */	\
+    0x81, 0x02,         /*          Input (Variable),           */	\
+    0x09, 0x32,         /*          Usage (In Range),           */	\
+    0x81, 0x02,         /*          Input (Variable),           */	\
+    0x09, 0x37,         /*          Usage (Data Valid),         */	\
+    0x81, 0x02,         /*          Input (Variable),           */	\
+    0x25, 0x1F,         /*          Logical Maximum (31),       */	\
+    0x75, 0x05,         /*          Report Size (5),            */	\
+    0x09, 0x51,         /*          Usage (51h),                */	\
+    0x81, 0x02,         /*          Input (Variable),           */	\
+    0x05, 0x01,         /*          Usage Page (Desktop),       */	\
+    0x55, 0x0E,         /*          Unit Exponent (14),         */	\
+    0x65, 0x11,         /*          Unit (Centimeter),          */	\
+    0x35, 0x00,         /*          Physical Minimum (0),       */	\
+    0x75, 0x10,         /*          Report Size (16),           */	\
+    0x46, 0x56, 0x0A,   /*          Physical Maximum (2646),    */	\
+    0x26, 0xFF, 0x0F,   /*          Logical Maximum (4095),     */	\
+    0x09, 0x30,         /*          Usage (X),                  */	\
+    0x81, 0x02,         /*          Input (Variable),           */	\
+    0x46, 0xB2, 0x05,   /*          Physical Maximum (1458),    */	\
+    0x26, 0xFF, 0x0F,   /*          Logical Maximum (4095),     */	\
+    0x09, 0x31,         /*          Usage (Y),                  */	\
+    0x81, 0x02,         /*          Input (Variable),           */	\
+    0x05, 0x0D,         /*          Usage Page (Digitizer),     */	\
+    0x75, 0x08,         /*          Report Size (8),            */	\
+    0x85, REPORT_ID_MT_MAX_COUNT, /* Report ID (10),            */	\
+    0x09, 0x55,         /*          Usage (55h),                */	\
+    0x25, 0x10,         /*          Logical Maximum (16),       */	\
+    0xB1, 0x02,         /*          Feature (Variable),         */	\
+    0xC0,               /*      End Collection,                 */	\
+    0xC0                /*  End Collection                      */
+
 struct hidg_func_descriptor my_hid_data = {
   .subclass= 0, /* No subclass */
   .protocol= 0,
   .report_length= 8,
-  .report_desc_length= 144,
+  .report_desc_length= 60,
+  /* .report_desc_length= 144, */
   /* Length without the mouse: */
   /* .report_desc_length= 84, */
   .report_desc= {
-    MOUSE,
-    0x05, 0x0D,         /*  Usage Page (Digitizer),             */
-    0x09, 0x04,         /*  Usage (Touchscreen),                */
-    0xA1, 0x01,         /*  Collection (Application),           */
-    0x85, REPORT_ID_MULTITOUCH, /* Report ID (4),               */
-    0x09, 0x22,         /*      Usage (Finger),                 */
-    0xA1, 0x00,         /*      Collection (Physical),          */
-    0x09, 0x42,         /*          Usage (Tip Switch),         */
-    0x15, 0x00,         /*          Logical Minimum (0),        */
-    0x25, 0x01,         /*          Logical Maximum (1),        */
-    0x75, 0x01,         /*          Report Size (1),            */
-    0x95, 0x01,         /*          Report Count (1),           */
-    0x81, 0x02,         /*          Input (Variable),           */
-    0x09, 0x32,         /*          Usage (In Range),           */
-    0x81, 0x02,         /*          Input (Variable),           */
-    0x09, 0x37,         /*          Usage (Data Valid),         */
-    0x81, 0x02,         /*          Input (Variable),           */
-    0x25, 0x1F,         /*          Logical Maximum (31),       */
-    0x75, 0x05,         /*          Report Size (5),            */
-    0x09, 0x51,         /*          Usage (51h),                */
-    0x81, 0x02,         /*          Input (Variable),           */
-    0x05, 0x01,         /*          Usage Page (Desktop),       */
-    0x55, 0x0E,         /*          Unit Exponent (14),         */
-    0x65, 0x11,         /*          Unit (Centimeter),          */
-    0x35, 0x00,         /*          Physical Minimum (0),       */
-    0x75, 0x10,         /*          Report Size (16),           */
-    0x46, 0x56, 0x0A,   /*          Physical Maximum (2646),    */
-    0x26, 0xFF, 0x0F,   /*          Logical Maximum (4095),     */
-    0x09, 0x30,         /*          Usage (X),                  */
-    0x81, 0x02,         /*          Input (Variable),           */
-    0x46, 0xB2, 0x05,   /*          Physical Maximum (1458),    */
-    0x26, 0xFF, 0x0F,   /*          Logical Maximum (4095),     */
-    0x09, 0x31,         /*          Usage (Y),                  */
-    0x81, 0x02,         /*          Input (Variable),           */
-    0x05, 0x0D,         /*          Usage Page (Digitizer),     */
-    0x75, 0x08,         /*          Report Size (8),            */
-    0x85, REPORT_ID_MT_MAX_COUNT, /* Report ID (10),            */
-    0x09, 0x55,         /*          Usage (55h),                */
-    0x25, 0x10,         /*          Logical Maximum (16),       */
-    0xB1, 0x02,         /*          Feature (Variable),         */
-    0xC0,               /*      End Collection,                 */
-    0xC0                /*  End Collection                      */
+    MOUSE
   }
 };
 
