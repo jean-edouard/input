@@ -527,8 +527,7 @@ input_daemon_get_last_input_time (InputDaemonObject *this, gint* OUT_lastInputTi
 void bus_init()
 {
     InputDaemonObject *server_obj = NULL;
-    /* have to initialise glib type system */
-    g_type_init();
+
     gbus_conn = dbus_g_bus_get(DBUS_BUS_SYSTEM, NULL);
     if (!gbus_conn) {
         info("no bus");

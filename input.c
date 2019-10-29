@@ -379,7 +379,7 @@ void fixkeybits(unsigned long *keybits, uint64_t * absbits, int slot)
     unsigned long bit;
     if (input_dev.types[slot] == HID_TYPE_TOUCHPAD)
     { // crear out any keys that don't look like mouse keys
-        keybits[2] = 0;
+        keybits[LONG(2)] = 0;
         keybits[0] &= ~ (unsigned long)0x1FF;
     } else
 
@@ -407,7 +407,7 @@ static int anyset(unsigned long *keybit)
 {
     int i, a;
     a = 0;
-    for (i = 0; i < BTN_WORDS; i++)
+    for (i = 0; i < BTN_WORDS - 1; i++)
         a |= keybit[i];
     return a;
 }
